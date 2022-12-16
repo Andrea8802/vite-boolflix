@@ -1,15 +1,43 @@
 <script>
 import AppHeader from './components/AppHeader.vue'
+import FilmList from './components/FilmList.vue'
+
+import axios from 'axios';
+import { store } from './store'
+
 export default {
   name: "App",
   components: {
-    AppHeader
+    AppHeader,
+    FilmList
+  },
+
+  data() {
+    return {
+      store
+    }
+  },
+
+  methods: {
+    getAPI() {
+      store.apiURL = `${store.apiURL}&query=${store.valoreRicerca}`
+      axios
+        .get(store.apiURL)
+        .then(res => {
+          store.filmTrovati = res.data.results
+          console.log(store.filmTrovati);
+        })
+        .catch(err => {
+          console.log("Errore", err);
+        })
+    }
   }
 }
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader @clickedSearch="getAPI" />
+  <FilmList />
 </template>
 
 <style lang="scss">

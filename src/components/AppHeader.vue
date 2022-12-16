@@ -1,5 +1,13 @@
 <script>
-
+import { store } from '../store'
+export default {
+  name: "AppHeader",
+  data() {
+    return {
+      store
+    }
+  }
+}
 </script>
 
 <template>
@@ -9,8 +17,8 @@
       BoolFlix
     </h1>
     <div class="search">
-      <input type="search">
-      <button>
+      <input type="search" v-model="store.valoreRicerca">
+      <button @click="$emit('clickedSearch')">
         Cerca
       </button>
     </div>
@@ -30,6 +38,10 @@ header {
 
   h1 {
     color: red;
+  }
+
+  button {
+    margin-left: 20px;
   }
 }
 </style>
