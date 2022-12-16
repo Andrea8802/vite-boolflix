@@ -18,7 +18,7 @@ export default {
       BoolFlix
     </h1>
     <div class="search">
-      <input type="search" v-model="store.valoreRicerca">
+      <input type="search" v-model="store.valoreRicerca" @keyup.enter="$emit('clickedSearch')">
       <button @click="$emit('clickedSearch')">
         Cerca
       </button>

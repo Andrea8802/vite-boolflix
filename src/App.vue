@@ -1,6 +1,7 @@
 <script>
 import AppHeader from './components/AppHeader.vue'
 import FilmList from './components/FilmList.vue'
+import TVSeries from './components/TVSeries.vue'
 import axios from 'axios';
 import { store } from './store'
 
@@ -8,7 +9,8 @@ export default {
   name: "App",
   components: {
     AppHeader,
-    FilmList
+    FilmList,
+    TVSeries
   },
 
   data() {
@@ -19,15 +21,35 @@ export default {
 
   methods: {
     getAPI() {
-      store.apiURL = `${store.apiURL}&query=${store.valoreRicerca}`
+
+      // Chiamata API Film
+
+      let CopyAPIFilm = store.filmAPIURL
+      CopyAPIFilm = `${CopyAPIFilm}&query=${store.valoreRicerca}`
       axios
-        .get(store.apiURL)
+
+        .get(CopyAPIFilm)
         .then(res => {
           store.filmTrovati = res.data.results
           console.log(store.filmTrovati);
         })
         .catch(err => {
           console.log("Errore", err);
+        })
+
+      // Chiamata API Serie TV
+      let CopyAPISeries = store.seriesAPIURL
+      CopyAPISeries = `${CopyAPISeries}&query=${store.valoreRicerca}`
+      console.log(CopyAPISeries);
+
+      axios
+        .get(CopyAPISeries)
+        .then(res => {
+          store.serieTrovate = res.data.results
+          console.log(store.serieTrovate);
+        })
+        .catch(err => {
+          console.log("Errore:", err);
         })
     }
   }
@@ -38,6 +60,7 @@ export default {
   <AppHeader @clickedSearch="getAPI" />
   <main>
     <FilmList />
+    <TVSeries />
   </main>
 </template>
 

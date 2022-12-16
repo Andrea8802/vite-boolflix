@@ -1,7 +1,7 @@
 <script>
 import { store } from '../store'
 export default {
-    name: "FilmList",
+    name: "TVSeries",
     data() {
         return {
             store,
@@ -16,19 +16,18 @@ export default {
 
 <template>
     <section>
-        <!-- DEBUG -->
         <h1>
-            FILM
+            SERIE TV
         </h1>
-
-        <div class="film" v-for="info in store.filmTrovati">
+        <!-- DEBUG -->
+        <div class="film" v-for="info in store.serieTrovate">
 
             <div>
-                {{ info.title }}
+                {{ info.name }}
             </div>
 
             <div>
-                {{ info.original_title }}
+                {{ info.name }}
             </div>
 
             <div v-for="lingua in lingueFilm" class="img-lingua">
