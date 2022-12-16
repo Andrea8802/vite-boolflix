@@ -4,7 +4,8 @@ export default {
   name: "AppHeader",
   data() {
     return {
-      store
+      store,
+
     }
   }
 }

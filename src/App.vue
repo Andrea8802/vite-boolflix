@@ -1,7 +1,6 @@
 <script>
 import AppHeader from './components/AppHeader.vue'
 import FilmList from './components/FilmList.vue'
-
 import axios from 'axios';
 import { store } from './store'
 
@@ -37,7 +36,9 @@ export default {
 
 <template>
   <AppHeader @clickedSearch="getAPI" />
-  <FilmList />
+  <main>
+    <FilmList />
+  </main>
 </template>
 
 <style lang="scss">
