@@ -24,7 +24,7 @@ export default {
                 {{ info.title }}
             </div>
 
-            <div>
+            <div v-if="info.title !== info.original_title">
                 {{ info.original_title }}
             </div>
 
@@ -43,16 +43,14 @@ export default {
             </div>
 
             <div class="copertina">
-                <img :src="'https://image.tmdb.org/t/p/original' + info.poster_path" alt="">
+                <img :src="'https://image.tmdb.org/t/p/original' + info.poster_path" alt="Immagine di copertina">
             </div>
 
             <div>
-
                 <span v-for="numero in 5">
                     <fa icon="fa-solid fa-star" v-if="Math.ceil(info.vote_average / 2) >= numero" />
                     <fa icon="fa-regular fa-star" v-else-if="Math.ceil(info.vote_average / 2) < numero" />
                 </span>
-
             </div>
         </div>
     </section>

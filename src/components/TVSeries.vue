@@ -27,8 +27,8 @@ export default {
                 {{ info.name }}
             </div>
 
-            <div>
-                {{ info.name }}
+            <div v-if="info.name !== info.original_name">
+                {{ info.original_name }}
             </div>
 
             <div v-for="lingua in lingueFilm" class="img-lingua">
@@ -50,7 +50,10 @@ export default {
             </div>
 
             <div>
-                {{ info.vote_average }}
+                <span v-for="numero in 5">
+                    <fa icon="fa-solid fa-star" v-if="Math.ceil(info.vote_average / 2) >= numero" />
+                    <fa icon="fa-regular fa-star" v-else-if="Math.ceil(info.vote_average / 2) < numero" />
+                </span>
             </div>
         </div>
     </section>
