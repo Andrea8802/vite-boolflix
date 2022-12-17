@@ -21,10 +21,13 @@ export default {
   methods: {
     getAPI() {
 
+
+
       // Chiamata API Film
 
       let CopyAPIFilm = store.filmAPIURL
       CopyAPIFilm = `${CopyAPIFilm}&query=${store.valoreRicerca}`
+
       axios
 
         .get(CopyAPIFilm)
@@ -35,10 +38,14 @@ export default {
         .catch(err => {
           console.log("Errore", err);
         })
+        .finally(() => {
+          store.bottoneCliccato = true;
+        });
 
       // Chiamata API Serie TV
       let CopyAPISeries = store.seriesAPIURL
       CopyAPISeries = `${CopyAPISeries}&query=${store.valoreRicerca}`
+
       console.log(CopyAPISeries);
 
       axios
@@ -50,6 +57,9 @@ export default {
         .catch(err => {
           console.log("Errore:", err);
         })
+        .finally(() => {
+          store.bottoneCliccato = true;
+        });
     }
   }
 }
