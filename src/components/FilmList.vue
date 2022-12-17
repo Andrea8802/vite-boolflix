@@ -5,18 +5,15 @@ export default {
     data() {
         return {
             store,
-            lingueFilm: ["en", "it", "de", "fr", "es"],
+            lingueFilm: ["en", "it", "de", "fr", "es"]
         }
-    },
-    mounted() {
-
     }
 }
 </script>
 
 <template>
     <section>
-        <!-- DEBUG -->
+        <!-- DEBUG (Da spostare in un componente una volta sistemato lo stile) -->
         <h1>
             FILM
         </h1>
@@ -38,16 +35,24 @@ export default {
 
             </div>
 
-            <div v-if="!lingueFilm.includes(info.original_language)" class="img-lingua-error">
+            <div v-if="!lingueFilm.includes(info.original_language)" class="img-lingua error">
 
                 <img src="../assets/img/xx.svg" alt="Bandiera Sconosciuta">
 
 
             </div>
 
+            <div class="copertina">
+                <img :src="'https://image.tmdb.org/t/p/original' + info.poster_path" alt="">
+            </div>
 
             <div>
-                {{ info.vote_average }}
+
+                <span v-for="numero in 5">
+                    <fa icon="fa-solid fa-star" v-if="Math.ceil(info.vote_average / 2) >= numero" />
+                    <fa icon="fa-regular fa-star" v-else-if="Math.ceil(info.vote_average / 2) < numero" />
+                </span>
+
             </div>
         </div>
     </section>
@@ -58,6 +63,7 @@ export default {
 section {
     background-color: #181818;
     min-height: calc(100vh - 100px);
+    color: white;
 
     .film {
         border: 1px solid white;
@@ -74,19 +80,16 @@ section {
         }
     }
 
-    .img-lingua-error {
-        width: 25px;
+    .error image {
+        filter: invert(1);
+    }
+
+    .copertina {
+        width: 250px;
 
         img {
             width: 100%;
-            border-radius: 50%;
-            filter: invert(1);
-
         }
-    }
-
-    div {
-        color: white;
     }
 }
 </style>

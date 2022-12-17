@@ -19,7 +19,8 @@ export default {
         <h1>
             SERIE TV
         </h1>
-        <!-- DEBUG -->
+        <!-- DEBUG (Da spostare in un componente una volta sistemato lo stile) -->
+
         <div class="film" v-for="info in store.serieTrovate">
 
             <div>
@@ -44,6 +45,9 @@ export default {
 
             </div>
 
+            <div class="copertina">
+                <img :src="'https://image.tmdb.org/t/p/original' + info.poster_path" alt="">
+            </div>
 
             <div>
                 {{ info.vote_average }}
@@ -57,6 +61,7 @@ export default {
 section {
     background-color: #181818;
     min-height: calc(100vh - 100px);
+    color: white;
 
     .film {
         border: 1px solid white;
@@ -84,8 +89,12 @@ section {
         }
     }
 
-    div {
-        color: white;
+    .copertina {
+        width: 250px;
+
+        img {
+            width: 100%;
+        }
     }
 }
 </style>
