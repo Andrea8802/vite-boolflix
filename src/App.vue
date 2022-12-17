@@ -1,7 +1,7 @@
 <script>
 import AppHeader from './components/AppHeader.vue'
-import FilmList from './components/FilmList.vue'
-import TVSeries from './components/TVSeries.vue'
+import AppMain from './components/AppMain.vue'
+
 import axios from 'axios';
 import { store } from './store'
 
@@ -9,8 +9,7 @@ export default {
   name: "App",
   components: {
     AppHeader,
-    FilmList,
-    TVSeries
+    AppMain
   },
 
   data() {
@@ -58,10 +57,7 @@ export default {
 
 <template>
   <AppHeader @clickedSearch="getAPI" />
-  <main>
-    <FilmList />
-    <TVSeries />
-  </main>
+  <AppMain />
 </template>
 
 <style lang="scss">

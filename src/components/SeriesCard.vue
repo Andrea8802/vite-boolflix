@@ -1,7 +1,8 @@
 <script>
 import { store } from '../store'
+
 export default {
-    name: "FilmList",
+    name: "SeriesCard",
     data() {
         return {
             store,
@@ -13,19 +14,18 @@ export default {
 
 <template>
     <section>
-        <!-- DEBUG (Da spostare in un componente una volta sistemato lo stile) -->
         <h1>
-            FILM
+            SERIE TV
         </h1>
 
-        <div class="film" v-for="info in store.filmTrovati">
+        <div class="film" v-for="info in store.serieTrovate">
 
             <div>
-                {{ info.title }}
+                {{ info.name }}
             </div>
 
-            <div v-if="info.title !== info.original_title">
-                {{ info.original_title }}
+            <div v-if="info.name !== info.original_name">
+                {{ info.original_name }}
             </div>
 
             <div v-for="lingua in lingueFilm" class="img-lingua">
@@ -35,7 +35,7 @@ export default {
 
             </div>
 
-            <div v-if="!lingueFilm.includes(info.original_language)" class="img-lingua error">
+            <div v-if="!lingueFilm.includes(info.original_language)" class="img-lingua-error">
 
                 <img src="../assets/img/xx.svg" alt="Bandiera Sconosciuta">
 
@@ -43,7 +43,7 @@ export default {
             </div>
 
             <div class="copertina">
-                <img :src="'https://image.tmdb.org/t/p/original' + info.poster_path" alt="Immagine di copertina">
+                <img :src="'https://image.tmdb.org/t/p/original' + info.poster_path" alt="">
             </div>
 
             <div>
@@ -54,13 +54,11 @@ export default {
             </div>
         </div>
     </section>
-
 </template>
 
 <style lang="scss" scoped>
 section {
     background-color: #181818;
-    min-height: calc(100vh - 100px);
     color: white;
 
     .film {
@@ -78,8 +76,15 @@ section {
         }
     }
 
-    .error image {
-        filter: invert(1);
+    .img-lingua-error {
+        width: 25px;
+
+        img {
+            width: 100%;
+            border-radius: 50%;
+            filter: invert(1);
+
+        }
     }
 
     .copertina {
