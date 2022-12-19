@@ -19,30 +19,48 @@ export default {
   },
 
   methods: {
-    getAPI() {
-
+    ricercaTitolo() {
       if (store.valoreRicerca === "") return;
 
-      store.ricercaFatta = true;
+      store.titoloRicercato = true;
 
-      // API serie e film
-      let CopyFilmSeriesAPI = store.filmSeriesAPI
-      CopyFilmSeriesAPI = `${CopyFilmSeriesAPI}&query=${store.valoreRicerca}`
+      // API serie tv
+      let CopySeriesAPI = store.seriesAPI
+      CopySeriesAPI = `${CopySeriesAPI}&query=${store.valoreRicerca}`
 
 
       axios
-        .get(CopyFilmSeriesAPI)
+        .get(CopySeriesAPI)
         .then(res => {
-          store.filmSeriesTrovati = res.data.results
-          console.log(store.filmSeriesTrovati);
+          store.serieTrovate = res.data.results
+          console.log(store.serieTrovate);
         })
         .catch(err => {
           console.log("Errore", err);
         });
 
+      // API Film
+      let CopyFilmAPI = store.filmAPI
+      CopyFilmAPI = `${CopyFilmAPI}&query=${store.valoreRicerca}`
+
+
+      axios
+        .get(CopyFilmAPI)
+        .then(res => {
+          store.filmTrovati = res.data.results
+          console.log(store.filmTrovati);
+        })
+        .catch(err => {
+          console.log("Errore", err);
+        });
+
+
+      store.valoreRicerca = ""
     }
   },
+
   mounted() {
+
     // API film più popolari
     axios
       .get(store.filmPopolariAPI)
@@ -68,7 +86,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @clickedSearch="getAPI" />
+  <AppHeader @clickedSearch="ricercaTitolo" />
   <AppMain />
 </template>
 

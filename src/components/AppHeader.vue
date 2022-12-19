@@ -19,6 +19,25 @@ export default {
     </h1>
 
     <div class="search">
+      <label for="filtra">
+        Mostra:
+      </label>
+
+      <select id="filtra" v-model="store.filtroRicerca">
+        <option value="">
+          Tutto
+        </option>
+
+        <option value="SerieTV">
+          Serie TV
+        </option>
+
+        <option value="Film">
+          Film
+        </option>
+
+      </select>
+
       <input type="search" v-model="store.valoreRicerca" @keyup.enter="$emit('clickedSearch')">
 
       <button @click="$emit('clickedSearch')">
@@ -44,44 +63,72 @@ header {
     color: red;
   }
 
-  input {
-    border: 1px solid white;
-    border-radius: 5px;
-    background-color: black;
-    padding: 10px 15px;
-    font-weight: bold;
-    color: white;
+  .search {
+    @include d-flex (center, center);
+    gap: 15px;
 
-    &:focus {
-      outline: none;
-      border: 2px solid white;
-      background-color: #181818;
+    label {
+      color: white;
+      font-weight: bold;
     }
 
-    &:hover {
-      background-color: #181818;
+    select {
+      background-color: black;
+      color: white;
+      border: 1px solid white;
+      border-radius: 5px;
+      padding: 5px 10px;
+
+      &:focus {
+        outline: none;
+        border: 2px solid white;
+        background-color: #181818;
+      }
+
+      &:hover {
+        background-color: #181818;
+      }
+    }
+
+    input {
+      border: 1px solid white;
+      border-radius: 5px;
+      background-color: black;
+      padding: 10px 15px;
+      font-weight: bold;
+      color: white;
+
+      &:focus {
+        outline: none;
+        border: 2px solid white;
+        background-color: #181818;
+      }
+
+      &:hover {
+        background-color: #181818;
+      }
+    }
+
+    button {
+      border: 1px solid white;
+      border-radius: 10px;
+      color: red;
+      font-weight: bold;
+      background-color: black;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:focus {
+        border: 2px solid white
+      }
+
+      &:hover {
+        background-color: #181818;
+      }
+
     }
   }
 
-  button {
-    margin-left: 20px;
-    border: 1px solid white;
-    border-radius: 10px;
-    color: red;
-    font-weight: bold;
-    background-color: black;
-    padding: 10px 15px;
-    font-size: 14px;
-    cursor: pointer;
-
-    &:focus {
-      border: 2px solid white
-    }
-
-    &:hover {
-      background-color: #181818;
-    }
-
-  }
 }
 </style>

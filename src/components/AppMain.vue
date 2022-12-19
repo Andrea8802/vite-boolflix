@@ -24,36 +24,55 @@ export default {
 <template>
 
     <main>
-        <div v-if="!store.ricercaFatta">
+        <div v-if="store.filtroRicerca === 'SerieTV'">
             <h1>
-                Serie TV Più Popolari
+                Serie TV
+                <span v-if="!store.titoloRicercato">
+                    Più Popolari
+                </span>
             </h1>
-            <div class="list">
-                <SeriesCard />
-            </div>
+            <SeriesCard />
+        </div>
+
+        <div v-if="store.filtroRicerca === 'Film'">
+            <h1>
+                Film
+                <span v-if="!store.titoloRicercato">
+                    Più Popolari
+                </span>
+            </h1>
+
+            <FilmCard />
+        </div>
+
+
+        <div v-if="store.filtroRicerca !== 'Film' && store.filtroRicerca !== 'SerieTV'">
+            <h1>
+                Serie TV
+                <span v-if="!store.titoloRicercato">
+                    Più Popolari
+                </span>
+            </h1>
+
+            <SeriesCard />
 
             <hr>
 
             <h1>
-                Film Più Popolari
+                Film
+                <span v-if="!store.titoloRicercato">
+                    Più Popolari
+                </span>
             </h1>
 
-            <div class="list">
-                <FilmCard />
-            </div>
+            <FilmCard />
         </div>
 
-
-        <div class="list" v-else="">
-            <SeriesFilmCard />
-        </div>
     </main>
 
 </template>
 
 <style lang="scss" scoped>
-@use '../styles/partials/mixins' as *;
-
 main {
     min-height: calc(100vh - 100px);
     background-color: #181818;
@@ -64,12 +83,6 @@ main {
         padding: 50px 0;
     }
 
-    .list {
-        padding: 20px 50px;
-        @include d-flex(evenly, center);
-        column-gap: 50px;
-        row-gap: 100px;
-    }
 
     hr {
         border-color: gray;
