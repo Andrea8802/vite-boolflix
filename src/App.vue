@@ -21,46 +21,48 @@ export default {
   methods: {
     getAPI() {
 
+      if (store.valoreRicerca === "") return;
 
+      store.ricercaFatta = true;
 
-      // Chiamata API Film
+      // API serie e film
+      let CopyFilmSeriesAPI = store.filmSeriesAPI
+      CopyFilmSeriesAPI = `${CopyFilmSeriesAPI}&query=${store.valoreRicerca}`
 
-      let CopyAPIFilm = store.filmAPIURL
-      CopyAPIFilm = `${CopyAPIFilm}&query=${store.valoreRicerca}`
 
       axios
-
-        .get(CopyAPIFilm)
+        .get(CopyFilmSeriesAPI)
         .then(res => {
-          store.filmTrovati = res.data.results
-          console.log(store.filmTrovati);
+          store.filmSeriesTrovati = res.data.results
+          console.log(store.filmSeriesTrovati);
         })
         .catch(err => {
           console.log("Errore", err);
-        })
-        .finally(() => {
-          store.bottoneCliccato = true;
         });
 
-      // Chiamata API Serie TV
-      let CopyAPISeries = store.seriesAPIURL
-      CopyAPISeries = `${CopyAPISeries}&query=${store.valoreRicerca}`
-
-      console.log(CopyAPISeries);
-
-      axios
-        .get(CopyAPISeries)
-        .then(res => {
-          store.serieTrovate = res.data.results
-          console.log(store.serieTrovate);
-        })
-        .catch(err => {
-          console.log("Errore:", err);
-        })
-        .finally(() => {
-          store.bottoneCliccato = true;
-        });
     }
+  },
+  mounted() {
+    // API film più popolari
+    axios
+      .get(store.filmPopolariAPI)
+      .then(res => {
+        store.filmTrovati = res.data.results
+      })
+      .catch(err => {
+        console.log("Errore", err);
+      })
+
+
+    // API serie più popolari
+    axios
+      .get(store.seriePopolariAPI)
+      .then(res => {
+        store.serieTrovate = res.data.results
+      })
+      .catch(err => {
+        console.log("Errore", err);
+      })
   }
 }
 </script>

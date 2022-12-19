@@ -1,13 +1,16 @@
 <script>
 import { store } from '../store'
-import FilmCard from './FilmCard.vue';
+import SeriesFilmCard from './SeriesFilmCard.vue';
 import SeriesCard from './SeriesCard.vue';
+import FilmCard from './FilmCard.vue';
 
 export default {
     name: "AppMain",
     components: {
-        FilmCard,
-        SeriesCard
+        SeriesFilmCard,
+        SeriesCard,
+        FilmCard
+
     },
 
     data() {
@@ -21,22 +24,28 @@ export default {
 <template>
 
     <main>
-        <h1 v-if="store.bottoneCliccato">
-            FILM
-        </h1>
+        <div v-if="!store.ricercaFatta">
+            <h1>
+                Serie TV Più Popolari
+            </h1>
+            <div class="list">
+                <SeriesCard />
+            </div>
 
-        <div class="list">
-            <FilmCard />
+            <hr>
+
+            <h1>
+                Film Più Popolari
+            </h1>
+
+            <div class="list">
+                <FilmCard />
+            </div>
         </div>
 
-        <hr v-if="store.bottoneCliccato">
 
-        <h1 v-if="store.bottoneCliccato">
-            SERIE TV
-        </h1>
-
-        <div class="list">
-            <SeriesCard />
+        <div class="list" v-else="">
+            <SeriesFilmCard />
         </div>
     </main>
 

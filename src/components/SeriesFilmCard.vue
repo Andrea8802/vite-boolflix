@@ -2,7 +2,7 @@
 import { store } from '../store'
 
 export default {
-    name: "SeriesCard",
+    name: "SeriesFilmCard",
     data() {
         return {
             store,
@@ -13,7 +13,7 @@ export default {
 </script>
 
 <template>
-    <div class="card" v-for="info in store.serieTrovate">
+    <div class="card" v-for="info in store.filmSeriesTrovati">
         <!-- Copertina -->
         <div class="copertina" v-if="info.poster_path === null">
             <img src="../assets/img/ImageNull.svg" alt="Immagine di errore" class="error">

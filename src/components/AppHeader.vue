@@ -38,7 +38,6 @@ header {
   height: 100px;
   padding: 0 30px;
   @include d-flex(between, center);
-
   border-bottom: 4px solid rgba($color: gray, $alpha: 0.3);
 
   h1 {
@@ -56,6 +55,11 @@ header {
     &:focus {
       outline: none;
       border: 2px solid white;
+      background-color: #181818;
+    }
+
+    &:hover {
+      background-color: #181818;
     }
   }
 
@@ -72,6 +76,10 @@ header {
 
     &:focus {
       border: 2px solid white
+    }
+
+    &:hover {
+      background-color: #181818;
     }
 
   }
