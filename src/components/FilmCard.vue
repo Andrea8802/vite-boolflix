@@ -83,6 +83,17 @@ export default {
                     </span>
                 </div>
 
+                <div>
+                    <span class="identificativo">
+                        Generi:
+                    </span>
+                    <span v-for="(genere, index) in info.genre_ids">
+                        <span v-if="genere === store.generiFilm[index].id">
+                            {{ store.generiFilm[index].name }}
+                        </span>
+                    </span>
+                </div>
+
                 <!-- Descrizione -->
                 <div>
                     <span class="identificativo">

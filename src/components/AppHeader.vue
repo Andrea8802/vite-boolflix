@@ -41,7 +41,6 @@ export default {
       let CopyFilmAPI = store.filmAPI
       CopyFilmAPI = `${CopyFilmAPI}&query=${store.valoreRicerca}`
 
-
       axios
         .get(CopyFilmAPI)
         .then(res => {
@@ -51,7 +50,6 @@ export default {
         .catch(err => {
           console.log("Errore", err);
         });
-
 
       store.valoreRicerca = ""
     }
@@ -97,7 +95,7 @@ header {
   }
 
   .search {
-    @include d-flex (center, center);
+    @include d-flex (evenly, center);
     gap: 20px;
 
 

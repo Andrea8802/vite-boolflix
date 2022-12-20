@@ -21,7 +21,6 @@ export default {
 </script>
 
 <template>
-
     <main>
         <div v-if="store.filmTrovati.length === 0 && store.serieTrovate.length === 0" class="ricerca-nulla">
             La ricerca non ha ottenuto nessun risultato
@@ -59,7 +58,6 @@ export default {
 
 
     </main>
-
 </template>
 
 <style lang="scss" scoped>
