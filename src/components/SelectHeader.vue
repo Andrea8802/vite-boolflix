@@ -14,9 +14,10 @@ export default {
 
             // Risultati ricerca serie tv
             axios
-                .get(store.ordineSerieAPI + store.ordineRisultati)
+                .get(store.ordineSerieAPI + store.ordineRisultati + "&language=" + store.linguaScelta)
                 .then(res => {
                     store.serieTrovate = res.data.results
+                    console.log(store.linguaScelta);
                 })
                 .catch(err => {
                     console.log("Errore", err);
@@ -25,7 +26,7 @@ export default {
 
             // Risultati ricerca film
             axios
-                .get(store.ordineFilmAPI + store.ordineRisultati)
+                .get(store.ordineFilmAPI + store.ordineRisultati + "&language=" + store.linguaScelta)
                 .then(res => {
                     store.filmTrovati = res.data.results
                 })
@@ -40,6 +41,16 @@ export default {
 </script>
 
 <template>
+    <!-- Select per scegliere lingua -->
+    <label for="lingue">
+        Lingua:
+    </label>
+    <select id="lingue" v-model="store.linguaScelta" @change="ordinaPerAPI">
+        <option v-for="lingua in store.lingue" :value="lingua.iso_639_1">
+            {{ lingua.english_name }}
+        </option>
+
+    </select>
 
     <!-- Non mostrare questa selezione se la ricerca è stata fatta -->
     <div v-if="!store.ricercaEffettuata">

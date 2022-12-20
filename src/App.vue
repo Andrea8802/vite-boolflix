@@ -25,7 +25,7 @@ export default {
 
     // API film più popolari
     axios
-      .get(store.ordineFilmAPI + "popularity.desc")
+      .get(store.ordineFilmAPI + "popularity.desc" + "&language=" + store.linguaScelta)
       .then(res => {
         store.filmTrovati = res.data.results
       })
@@ -39,7 +39,7 @@ export default {
 
     // API serie più popolari
     axios
-      .get(store.ordineSerieAPI + "popularity.desc")
+      .get(store.ordineSerieAPI + "popularity.desc" + "&language=" + store.linguaScelta)
       .then(res => {
         store.serieTrovate = res.data.results
       })
@@ -52,7 +52,7 @@ export default {
 
     // API per i generi dei film
     axios
-      .get(store.filmGenAPI)
+      .get(store.filmGenAPI + "&language=" + store.linguaScelta)
       .then(res => {
         store.generiFilm = res.data.genres
       })
@@ -65,7 +65,7 @@ export default {
 
     // API per i generi delle series
     axios
-      .get(store.seriesGenAPI)
+      .get(store.seriesGenAPI + "&language=" + store.linguaScelta)
       .then(res => {
         store.generiSeries = res.data.genres
       })
@@ -74,6 +74,15 @@ export default {
       })
       .finally(() => {
         this.APILoaded++;
+      })
+
+    axios
+      .get(store.linguaAPI)
+      .then(res => {
+        store.lingue = res.data
+      })
+      .catch(err => {
+        console.log("Errore", err);
       })
   }
 }

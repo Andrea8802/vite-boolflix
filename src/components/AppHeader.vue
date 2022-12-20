@@ -24,7 +24,7 @@ export default {
 
       // API ricerca serie tv
       axios
-        .get(store.seriesAPI + store.valoreRicerca)
+        .get(store.seriesAPI + store.valoreRicerca + "&language=" + store.linguaScelta)
         .then(res => {
           store.serieTrovate = res.data.results
         })
@@ -35,7 +35,7 @@ export default {
 
       // API ricerca Film
       axios
-        .get(store.filmAPI + store.valoreRicerca)
+        .get(store.filmAPI + store.valoreRicerca + "&language=" + store.linguaScelta)
         .then(res => {
           store.filmTrovati = res.data.results
         })
