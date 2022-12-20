@@ -1,13 +1,60 @@
 <script>
 import { store } from '../store'
+import SelectHeader from './SelectHeader.vue';
+import axios from 'axios';
+
 export default {
   name: "AppHeader",
+  components: {
+    SelectHeader
+  },
+
   data() {
     return {
       store,
 
     }
+  },
+
+  methods: {
+    ricercaTitolo() {
+      if (store.valoreRicerca === "") return;
+
+      // API serie tv
+      let CopySeriesAPI = store.seriesAPI
+      CopySeriesAPI = `${CopySeriesAPI}&query=${store.valoreRicerca}`
+
+
+      axios
+        .get(CopySeriesAPI)
+        .then(res => {
+          store.serieTrovate = res.data.results
+          console.log(store.serieTrovate);
+        })
+        .catch(err => {
+          console.log("Errore", err);
+        });
+
+      // API Film
+      let CopyFilmAPI = store.filmAPI
+      CopyFilmAPI = `${CopyFilmAPI}&query=${store.valoreRicerca}`
+
+
+      axios
+        .get(CopyFilmAPI)
+        .then(res => {
+          store.filmTrovati = res.data.results
+          console.log(store.filmTrovati);
+        })
+        .catch(err => {
+          console.log("Errore", err);
+        });
+
+
+      store.valoreRicerca = ""
+    }
   }
+
 }
 </script>
 
@@ -19,28 +66,12 @@ export default {
     </h1>
 
     <div class="search">
-      <label for="filtra">
-        Mostra:
-      </label>
 
-      <select id="filtra" v-model="store.filtroRicerca">
-        <option value="">
-          Tutto
-        </option>
-
-        <option value="SerieTV">
-          Serie TV
-        </option>
-
-        <option value="Film">
-          Film
-        </option>
-
-      </select>
+      <SelectHeader />
 
       <input type="search" v-model="store.valoreRicerca" @keyup.enter="$emit('clickedSearch')">
 
-      <button @click="$emit('clickedSearch')">
+      <button @click="ricercaTitolo">
         Cerca
       </button>
     </div>
@@ -65,30 +96,8 @@ header {
 
   .search {
     @include d-flex (center, center);
-    gap: 15px;
+    gap: 20px;
 
-    label {
-      color: white;
-      font-weight: bold;
-    }
-
-    select {
-      background-color: black;
-      color: white;
-      border: 1px solid white;
-      border-radius: 5px;
-      padding: 5px 10px;
-
-      &:focus {
-        outline: none;
-        border: 2px solid white;
-        background-color: #181818;
-      }
-
-      &:hover {
-        background-color: #181818;
-      }
-    }
 
     input {
       border: 1px solid white;

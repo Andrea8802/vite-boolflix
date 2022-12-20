@@ -18,52 +18,15 @@ export default {
     }
   },
 
-  methods: {
-    ricercaTitolo() {
-      if (store.valoreRicerca === "") return;
-
-      store.titoloRicercato = true;
-
-      // API serie tv
-      let CopySeriesAPI = store.seriesAPI
-      CopySeriesAPI = `${CopySeriesAPI}&query=${store.valoreRicerca}`
-
-
-      axios
-        .get(CopySeriesAPI)
-        .then(res => {
-          store.serieTrovate = res.data.results
-          console.log(store.serieTrovate);
-        })
-        .catch(err => {
-          console.log("Errore", err);
-        });
-
-      // API Film
-      let CopyFilmAPI = store.filmAPI
-      CopyFilmAPI = `${CopyFilmAPI}&query=${store.valoreRicerca}`
-
-
-      axios
-        .get(CopyFilmAPI)
-        .then(res => {
-          store.filmTrovati = res.data.results
-          console.log(store.filmTrovati);
-        })
-        .catch(err => {
-          console.log("Errore", err);
-        });
-
-
-      store.valoreRicerca = ""
-    }
-  },
-
   mounted() {
 
     // API film più popolari
+    let copyFilmAPI = store.ordineSerieAPI
+    copyFilmAPI += "popularity.desc"
+    console.log(copyFilmAPI);
+
     axios
-      .get(store.filmPopolariAPI)
+      .get(copyFilmAPI)
       .then(res => {
         store.filmTrovati = res.data.results
       })
@@ -73,8 +36,12 @@ export default {
 
 
     // API serie più popolari
+    let copySeriesAPI = store.ordineSerieAPI
+    copySeriesAPI += "popularity.desc"
+    console.log(copySeriesAPI);
+
     axios
-      .get(store.seriePopolariAPI)
+      .get(copySeriesAPI)
       .then(res => {
         store.serieTrovate = res.data.results
       })
@@ -86,7 +53,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader @clickedSearch="ricercaTitolo" />
+  <AppHeader />
   <AppMain />
 </template>
 
