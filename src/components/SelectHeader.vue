@@ -62,7 +62,7 @@ export default {
         </select>
     </div>
 
-    <div>
+    <div v-else="">
         <label for="filtra">
             Mostra:
         </label>

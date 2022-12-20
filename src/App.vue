@@ -16,7 +16,8 @@ export default {
 
   data() {
     return {
-      store
+      store,
+      APILoaded: 0
     }
   },
 
@@ -37,7 +38,7 @@ export default {
         console.log("Errore", err);
       })
       .finally(() => {
-        store.APILoaded++;
+        this.APILoaded++;
       })
 
 
@@ -57,7 +58,7 @@ export default {
         console.log("Errore", err);
       })
       .finally(() => {
-        store.APILoaded++;
+        this.APILoaded++;
       })
 
 
@@ -71,7 +72,7 @@ export default {
         console.log("Errore", err);
       })
       .finally(() => {
-        store.APILoaded++;
+        this.APILoaded++;
       })
 
     axios
@@ -84,14 +85,14 @@ export default {
         console.log("Errore", err);
       })
       .finally(() => {
-        store.APILoaded++;
+        this.APILoaded++;
       })
   }
 }
 </script>
 
 <template>
-  <div v-if="store.APILoaded === 4">
+  <div v-if="APILoaded === 4">
     <AppHeader />
     <AppMain />
   </div>

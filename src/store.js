@@ -18,6 +18,5 @@ export const store = reactive({
     ordineRisultati: "",
     filtroRicerca: "",
     valoreRicerca: "",
-    ricercaEffettuata: false,
-    APILoaded: 0
+    ricercaEffettuata: false
 })

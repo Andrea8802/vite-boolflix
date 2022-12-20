@@ -73,6 +73,8 @@
                 border: 1px solid gray;
                 border-radius: 10px;
                 overflow-y: scroll;
+                opacity: 1;
+                animation: onHover 0.5 ease;
 
                 .identificativo {
                     font-weight: bold;

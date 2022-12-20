@@ -55,8 +55,6 @@ export default {
 
             <FilmCard />
         </div>
-
-
     </main>
 </template>
 

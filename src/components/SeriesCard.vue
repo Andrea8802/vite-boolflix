@@ -101,7 +101,6 @@ export default {
                         Descrizione:
                     </span>
 
-                    <!-- Aggiungere quella inglese in sostituzione -->
                     <span v-if="info.overview === ''" class="descrizione nulla">
                         Descrizione non disponibile in questa lingua
                     </span>
