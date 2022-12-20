@@ -2,7 +2,6 @@
 import { store } from '../store'
 import SeriesCard from './SeriesCard.vue';
 import FilmCard from './FilmCard.vue';
-import axios from 'axios'
 
 export default {
     name: "AppMain",

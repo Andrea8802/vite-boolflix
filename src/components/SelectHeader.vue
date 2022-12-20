@@ -6,15 +6,13 @@ export default {
     name: "SelectHeader",
     data() {
         return {
-            store,
-            selected: "1"
+            store
         }
     },
     methods: {
         ordinaPerAPI() {
             let copyOrdineSerieAPI = store.ordineSerieAPI
             copyOrdineSerieAPI += store.ordineRisultati
-
 
             axios
                 .get(copyOrdineSerieAPI)
@@ -28,8 +26,6 @@ export default {
 
             let copyOrdineFilmAPI = store.ordineFilmAPI
             copyOrdineFilmAPI += store.ordineRisultati
-
-            console.log(copyOrdineFilmAPI);
 
             axios
                 .get(copyOrdineFilmAPI)
@@ -48,9 +44,9 @@ export default {
 
 <template>
 
-    <div>
+    <div v-if="!store.ricercaEffettuata">
         <label for="ordinaPer">
-            Ordina per:
+            Sfoglia per:
         </label>
 
         <select id="ordinaPer" v-model="store.ordineRisultati" @change="ordinaPerAPI">
@@ -67,13 +63,12 @@ export default {
     </div>
 
     <div>
-
         <label for="filtra">
             Mostra:
         </label>
 
         <select id="filtra" v-model="store.filtroRicerca">
-            <option selected>
+            <option value="">
                 Tutto
             </option>
 

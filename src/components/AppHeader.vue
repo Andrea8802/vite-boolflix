@@ -11,7 +11,7 @@ export default {
 
   data() {
     return {
-      store,
+      store
 
     }
   },
@@ -19,6 +19,8 @@ export default {
   methods: {
     ricercaTitolo() {
       if (store.valoreRicerca === "") return;
+
+      store.ricercaEffettuata = true;
 
       // API serie tv
       let CopySeriesAPI = store.seriesAPI
@@ -69,7 +71,7 @@ export default {
 
       <SelectHeader />
 
-      <input type="search" v-model="store.valoreRicerca" @keyup.enter="$emit('clickedSearch')">
+      <input type="search" v-model="store.valoreRicerca" @keyup.enter="ricercaTitolo">
 
       <button @click="ricercaTitolo">
         Cerca

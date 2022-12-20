@@ -11,5 +11,6 @@ export const store = reactive({
     filmTrovati: [],
     ordineRisultati: "",
     filtroRicerca: "",
-    valoreRicerca: ""
+    valoreRicerca: "",
+    ricercaEffettuata: false
 })

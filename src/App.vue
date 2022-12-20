@@ -21,7 +21,7 @@ export default {
   mounted() {
 
     // API film più popolari
-    let copyFilmAPI = store.ordineSerieAPI
+    let copyFilmAPI = store.ordineFilmAPI
     copyFilmAPI += "popularity.desc"
     console.log(copyFilmAPI);
 
