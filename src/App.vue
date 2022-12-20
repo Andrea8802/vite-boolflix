@@ -24,15 +24,10 @@ export default {
   created() {
 
     // API film più popolari
-    let copyFilmAPI = store.ordineFilmAPI
-    copyFilmAPI += "popularity.desc"
-    console.log(copyFilmAPI);
-
     axios
-      .get(copyFilmAPI)
+      .get(store.ordineFilmAPI + "popularity.desc")
       .then(res => {
         store.filmTrovati = res.data.results
-        console.log(store.filmTrovati);
       })
       .catch(err => {
         console.log("Errore", err);
@@ -43,16 +38,10 @@ export default {
 
 
     // API serie più popolari
-    let copySeriesAPI = store.ordineSerieAPI
-    copySeriesAPI += "popularity.desc"
-    console.log(copySeriesAPI);
-
     axios
-      .get(copySeriesAPI)
+      .get(store.ordineSerieAPI + "popularity.desc")
       .then(res => {
         store.serieTrovate = res.data.results
-        console.log(store.serieTrovate);
-
       })
       .catch(err => {
         console.log("Errore", err);
@@ -61,12 +50,11 @@ export default {
         this.APILoaded++;
       })
 
-
+    // API per i generi dei film
     axios
       .get(store.filmGenAPI)
       .then(res => {
         store.generiFilm = res.data.genres
-        console.log("aa", store.generiFilm);
       })
       .catch(err => {
         console.log("Errore", err);
@@ -75,11 +63,11 @@ export default {
         this.APILoaded++;
       })
 
+    // API per i generi delle series
     axios
       .get(store.seriesGenAPI)
       .then(res => {
         store.generiSeries = res.data.genres
-        console.log(store.generiSeries);
       })
       .catch(err => {
         console.log("Errore", err);
@@ -92,6 +80,8 @@ export default {
 </script>
 
 <template>
+
+  <!-- Attendere tutte le API con loading page -->
   <div v-if="APILoaded === 4">
     <AppHeader />
     <AppMain />

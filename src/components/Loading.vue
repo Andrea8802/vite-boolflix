@@ -2,6 +2,19 @@
 
 export default {
     name: "Loading",
+    data() {
+        return {
+            error: "",
+            stato: ""
+        }
+    },
+    mounted() {
+        // Controllo per evitare caricamento infinito in caso di qualche errore
+        setTimeout(() => {
+            this.error = "Errore! Riprova più tardi!";
+            this.stato = "none";
+        }, 10000)
+    }
 
 }
 </script>
@@ -11,7 +24,10 @@ export default {
         <h1>
             BoolFlix
         </h1>
-        <img src="../assets/img/loader.svg" alt="">
+        <h2>
+            {{ error }}
+        </h2>
+        <img src="../assets/img/loader.svg" alt="" :class="stato">
     </div>
 </template>
 
@@ -29,6 +45,14 @@ div {
     h1 {
         font-size: 60px;
         color: red;
+    }
+
+    h2 {
+        color: white;
+    }
+
+    .none {
+        display: none;
     }
 }
 </style>

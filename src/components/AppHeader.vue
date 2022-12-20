@@ -22,30 +22,22 @@ export default {
 
       store.ricercaEffettuata = true;
 
-      // API serie tv
-      let CopySeriesAPI = store.seriesAPI
-      CopySeriesAPI = `${CopySeriesAPI}&query=${store.valoreRicerca}`
-
-
+      // API ricerca serie tv
       axios
-        .get(CopySeriesAPI)
+        .get(store.seriesAPI + store.valoreRicerca)
         .then(res => {
           store.serieTrovate = res.data.results
-          console.log(store.serieTrovate);
         })
         .catch(err => {
           console.log("Errore", err);
         });
 
-      // API Film
-      let CopyFilmAPI = store.filmAPI
-      CopyFilmAPI = `${CopyFilmAPI}&query=${store.valoreRicerca}`
 
+      // API ricerca Film
       axios
-        .get(CopyFilmAPI)
+        .get(store.filmAPI + store.valoreRicerca)
         .then(res => {
           store.filmTrovati = res.data.results
-          console.log(store.filmTrovati);
         })
         .catch(err => {
           console.log("Errore", err);
@@ -54,7 +46,6 @@ export default {
       store.valoreRicerca = ""
     }
   }
-
 }
 </script>
 
@@ -62,11 +53,10 @@ export default {
 
   <header>
     <h1>
-      BoolFlix
+      BOOLFLIX
     </h1>
 
     <div class="search">
-
       <SelectHeader />
 
       <input type="search" v-model="store.valoreRicerca" @keyup.enter="ricercaTitolo">

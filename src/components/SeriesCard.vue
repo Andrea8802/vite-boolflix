@@ -46,7 +46,7 @@ export default {
                             Titolo originale:
                         </span>
                         <span>
-                            {{ info.name }}
+                            {{ info.original_name }}
                         </span>
                     </div>
                 </div>
@@ -85,15 +85,16 @@ export default {
                 </div>
 
                 <!-- Generi -->
-                <span class="identificativo">
-                    Generi:
-                </span>
-
-                <span v-for="(genere, index) in info.genre_ids">
-                    <span v-if="genere === store.generiSeries[index].id">
-                        {{ store.generiSeries[index].name + "; " }}
+                <div>
+                    <span v-for="(genere, index) in info.genre_ids">
+                        <span v-if="genere === store.generiSeries[index].id">
+                            <span class="identificativo">
+                                Generi:
+                            </span>
+                            {{ store.generiSeries[index].name + "; " }}
+                        </span>
                     </span>
-                </span>
+                </div>
 
                 <!-- Descrizione -->
                 <div>

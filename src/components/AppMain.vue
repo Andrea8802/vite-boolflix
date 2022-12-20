@@ -22,18 +22,20 @@ export default {
 
 <template>
     <main>
+
+        <!-- Operatore ternario per impostare il DOM in base ai dati ricevuti -->
         <div v-if="store.filmTrovati.length === 0 && store.serieTrovate.length === 0" class="ricerca-nulla">
             La ricerca non ha ottenuto nessun risultato
         </div>
 
-        <div v-else-if="store.filmTrovati.length === 0 && store.serieTrovate.length > 0">
+        <div v-if="store.serieTrovate.length > 0">
             <h1>
                 Serie TV
             </h1>
             <SeriesCard />
         </div>
 
-        <div v-else-if="store.filmTrovati.length > 0 && store.serieTrovate.length === 0">
+        <div v-if="store.filmTrovati.length > 0">
             <h1>
                 Film
             </h1>
@@ -41,20 +43,6 @@ export default {
             <FilmCard />
         </div>
 
-        <div v-else>
-            <h1>
-                Serie TV
-            </h1>
-            <SeriesCard />
-
-            <hr>
-
-            <h1>
-                Film
-            </h1>
-
-            <FilmCard />
-        </div>
     </main>
 </template>
 
@@ -79,6 +67,7 @@ main {
     h1 {
         text-align: center;
         padding: 50px 0;
+        font-size: 50px;
     }
 
 

@@ -11,24 +11,21 @@ export default {
     },
     methods: {
         ordinaPerAPI() {
-            let copyOrdineSerieAPI = store.ordineSerieAPI
-            copyOrdineSerieAPI += store.ordineRisultati
 
+            // Risultati ricerca serie tv
             axios
-                .get(copyOrdineSerieAPI)
+                .get(store.ordineSerieAPI + store.ordineRisultati)
                 .then(res => {
                     store.serieTrovate = res.data.results
-
                 })
                 .catch(err => {
                     console.log("Errore", err);
                 })
 
-            let copyOrdineFilmAPI = store.ordineFilmAPI
-            copyOrdineFilmAPI += store.ordineRisultati
 
+            // Risultati ricerca film
             axios
-                .get(copyOrdineFilmAPI)
+                .get(store.ordineFilmAPI + store.ordineRisultati)
                 .then(res => {
                     store.filmTrovati = res.data.results
                 })
@@ -44,11 +41,13 @@ export default {
 
 <template>
 
+    <!-- Non mostrare questa selezione se la ricerca è stata fatta -->
     <div v-if="!store.ricercaEffettuata">
         <label for="ordinaPer">
             Sfoglia per:
         </label>
 
+        <!-- Select per ordine risultati -->
         <select id="ordinaPer" v-model="store.ordineRisultati" @change="ordinaPerAPI">
 
             <option value="popularity.desc">
@@ -62,11 +61,13 @@ export default {
         </select>
     </div>
 
+
     <div v-else="">
         <label for="filtra">
             Mostra:
         </label>
 
+        <!-- Select per filtrare risultati -->
         <select id="filtra" v-model="store.filtroRicerca">
             <option value="">
                 Tutto

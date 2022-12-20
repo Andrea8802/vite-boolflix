@@ -20,6 +20,7 @@ export default {
                 <img src="../assets/img/ImageNull.svg" alt="Immagine di errore" class="error">
             </div>
 
+            <!-- Copertina alternativa -->
             <div class="copertina" v-else="">
                 <img :src="'https://image.tmdb.org/t/p/w342' + info.poster_path" alt="Immagine di copertina">
             </div>
@@ -61,7 +62,7 @@ export default {
                         :alt="'Bandiera ' + lingua">
                 </div>
 
-                <!-- Bandiera se non è disponibile quella della lingua richiesta -->
+                <!-- Bandiera alternativa-->
                 <div v-if="!lingueDisponibili.includes(info.original_language)" class="img-lingua">
                     <span class="identificativo">
                         Lingua non disponibile:
@@ -85,12 +86,12 @@ export default {
 
                 <!-- Generi -->
                 <div>
-                    <span class="identificativo">
-                        Generi:
-                    </span>
                     <span v-for="(genere, index) in info.genre_ids">
                         <span v-if="genere === store.generiFilm[index].id">
-                            {{ store.generiFilm[index].name }}
+                            <span class="identificativo">
+                                Generi:
+                            </span>
+                            {{ store.generiFilm[index].name + "; " }}
                         </span>
                     </span>
                 </div>
