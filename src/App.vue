@@ -76,6 +76,7 @@ export default {
         this.APILoaded++;
       })
 
+    // API per gestione lingue
     axios
       .get(store.linguaAPI)
       .then(res => {

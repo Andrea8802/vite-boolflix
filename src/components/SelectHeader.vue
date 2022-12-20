@@ -33,40 +33,66 @@ export default {
                 .catch(err => {
                     console.log("Errore", err);
                 })
-
         }
-
     }
 }
 </script>
 
 <template>
-    <!-- Select per scegliere lingua -->
-    <label for="lingue">
-        Lingua:
-    </label>
-    <select id="lingue" v-model="store.linguaScelta" @change="ordinaPerAPI">
-        <option v-for="lingua in store.lingue" :value="lingua.iso_639_1">
-            {{ lingua.english_name }}
-        </option>
 
-    </select>
+    <!-- Select per scegliere lingua -->
+    <div>
+        <label for="lingue">
+            Lingua:
+        </label>
+        <select id="lingue" v-model="store.linguaScelta" @change="ordinaPerAPI">
+            <option v-for="lingua in store.lingue" :value="lingua.iso_639_1">
+                {{ lingua.english_name }}
+            </option>
+
+        </select>
+    </div>
+
 
     <!-- Non mostrare questa selezione se la ricerca è stata fatta -->
     <div v-if="!store.ricercaEffettuata">
         <label for="ordinaPer">
-            Sfoglia per:
+            Mostra per:
         </label>
 
         <!-- Select per ordine risultati -->
         <select id="ordinaPer" v-model="store.ordineRisultati" @change="ordinaPerAPI">
 
             <option value="popularity.desc">
-                Popolarità
+                Più popolari
+            </option>
+
+            <option value="popularity.asc">
+                Meno popolari
             </option>
 
             <option value="vote_average.desc">
                 Voti più alti
+            </option>
+
+            <option value="vote_average.asc">
+                Voti più bassi
+            </option>
+
+            <option value="original_title.desc">
+                Ordine alfabetico (A-Z)
+            </option>
+
+            <option value="original_title.asc">
+                Ordine alfabetico (Z-A)
+            </option>
+
+            <option value="release_date.desc">
+                Più recenti
+            </option>
+
+            <option value="release_date.asc">
+                Meno recenti
             </option>
 
         </select>

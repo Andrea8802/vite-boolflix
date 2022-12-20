@@ -17,6 +17,7 @@ export const store = reactive({
     filmGenAPI: "https://api.themoviedb.org/3/genre/movie/list?api_key=b7542e2de57a2e816ff4d68245a8aef4",
     generiFilm: [],
 
+    // API gestione lingue
     linguaAPI: "https://api.themoviedb.org/3/configuration/languages?api_key=b7542e2de57a2e816ff4d68245a8aef4",
     lingue: [],
     linguaScelta: "it",

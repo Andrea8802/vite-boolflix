@@ -32,12 +32,21 @@ export default {
                         Titolo:
                     </span>
 
-                    <span>
+                    <span v-if="info.name !== ''">
                         {{ info.name }}
                     </span>
 
                 </div>
 
+                <!-- Data di pubblicazione -->
+                <div v-if="info.release_date !== null">
+                    <span class="identificativo">
+                        Data di pubblicazione:
+                    </span>
+                    <span>
+                        {{ info.release_date }}
+                    </span>
+                </div>
 
                 <!-- Titolo originale -->
                 <div>

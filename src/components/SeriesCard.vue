@@ -38,6 +38,16 @@ export default {
 
                 </div>
 
+                <!-- Data di pubblicazione -->
+                <div v-if="info.first_air_date !== null">
+                    <span class="identificativo">
+                        Data di pubblicazione:
+                    </span>
+                    <span>
+                        {{ info.first_air_date }}
+                    </span>
+                </div>
+
 
                 <!-- Titolo originale -->
                 <div>
@@ -95,6 +105,7 @@ export default {
                         </span>
                     </span>
                 </div>
+
 
                 <!-- Descrizione -->
                 <div>
