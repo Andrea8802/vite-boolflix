@@ -32,7 +32,10 @@ export default {
             <h1>
                 Serie TV
             </h1>
-            <SeriesCard />
+
+            <ul class="list">
+                <SeriesCard />
+            </ul>
         </div>
 
         <div v-if="store.filmTrovati.length > 0">
@@ -40,7 +43,9 @@ export default {
                 Film
             </h1>
 
-            <FilmCard />
+            <ul class="list">
+                <FilmCard />
+            </ul>
         </div>
 
     </main>
@@ -54,6 +59,13 @@ main {
     background-color: #181818;
     color: white;
     position: relative;
+
+    .list {
+        padding: 20px 50px;
+        @include d-flex(evenly, center);
+        column-gap: 10px;
+        row-gap: 100px;
+    }
 
     .ricerca-nulla {
         position: absolute;
